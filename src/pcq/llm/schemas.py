@@ -3,15 +3,6 @@ from __future__ import annotations
 from typing import Literal, Union
 from pydantic import BaseModel, Field, TypeAdapter
 
-
-class Click(BaseModel):
-    type: Literal["click"] = "click"
-    x: int
-    y: int
-    clicks: int = 1
-    button: Literal["left", "right"] = "left"
-
-
 class TypeText(BaseModel):
     type: Literal["type"] = "type"
     text: str
@@ -33,7 +24,7 @@ class Done(BaseModel):
     note: str = ""
 
 
-Action = Union[Click, TypeText, Hotkey, Wait, Done]
+Action = Union[TypeText, Hotkey, Wait, Done]
 
 _action_adapter = TypeAdapter(Action)
 
