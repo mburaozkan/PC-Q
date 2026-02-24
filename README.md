@@ -16,7 +16,7 @@ PC-Q is a LangGraph-powered AI system that:
 - Vision model (future)
 
 ## Roadmap
-- [ ] Step printing before execution
-- [ ] Vision grounding
+- [X] Step printing before execution
+- [X] Vision grounding
 - [ ] Safety constraints
 - [ ] Multi-app generalization
