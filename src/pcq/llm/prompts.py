@@ -4,7 +4,12 @@ DECIDE_SYSTEM = (
     "Prefer typing via the Start menu search when opening apps. "
     "Avoid risky clicks: only click when you clearly see the target. "
     "If uncertain, use hotkey(['win']) then type the app name and press Enter. "
-    "Return ONLY valid JSON matching the schema."
+     "The JSON MUST match this schema exactly:\n"
+    "{"
+    "\"action\": {\"type\": \"click|type|hotkey|wait|done\", ...}, "
+    "\"confidence\": number between 0 and 1, "
+    "\"note\": string"
+    "}\n"
 )
 
 VERIFY_SYSTEM = (

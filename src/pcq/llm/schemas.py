@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Literal, Union
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, TypeAdapter
 
 
 class Click(BaseModel):
@@ -35,6 +35,7 @@ class Done(BaseModel):
 
 Action = Union[Click, TypeText, Hotkey, Wait, Done]
 
+_action_adapter = TypeAdapter(Action)
 
 class DecideOut(BaseModel):
     action: Action
@@ -48,4 +49,4 @@ def parse_decide_out(json_text: str) -> DecideOut:
 
 def parse_action_dict(d: dict) -> Action:
     # Re-validate into the union
-    return Action.model_validate(d)  # type: ignore[attr-defined]
+    return _action_adapter.validate_python(d)

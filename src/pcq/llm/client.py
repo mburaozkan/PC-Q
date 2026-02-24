@@ -18,6 +18,8 @@ Last tool result: {last_result}
 Look at the screenshot and choose the next single action.
 Return only JSON.
 """
+    print(user)
+
     msg = llm.invoke(
         [
             ("system", DECIDE_SYSTEM),
@@ -25,11 +27,13 @@ Return only JSON.
                 "human",
                 [
                     {"type": "text", "text": user},
-                    {"type": "image_url", "image_url": f"data:image/png;base64,{screenshot_b64}"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{screenshot_b64}"}},
                 ],
             ),
         ]
     )
+    print(msg.content)
+
     return parse_decide_out(msg.content)
 
 
@@ -42,7 +46,7 @@ def llm_verify(*, llm: ChatOpenAI, goal: str, screenshot_b64: str) -> bool:
                 "human",
                 [
                     {"type": "text", "text": user},
-                    {"type": "image_url", "image_url": f"data:image/png;base64,{screenshot_b64}"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{screenshot_b64}"}},
                 ],
             ),
         ]
